@@ -11,7 +11,7 @@ int main(int argc, char **argv) {
   int opt;
   bool recursive = false;
   bool stack = false;
-  size_t n_disks = 0;
+  int n_disks = 0;
 
   if (argc <= 1) {
     printf("Add arguments!\n");
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
       stack = true;
       break;
     case 'n':
-      n_disks = (size_t)atoi(optarg);
+      n_disks = atoi(optarg);
       break;
     case ':':
       printf("option %c needs a value\n", optopt);
@@ -37,9 +37,8 @@ int main(int argc, char **argv) {
       exit(-1);
     }
   }
-  printf("%zu\n", n_disks);
   if (n_disks <= 0) {
-    printf("-n is mandatory!\n");
+    printf("-n is mandatory and greater than 1!\n");
     exit(-1);
   }
 

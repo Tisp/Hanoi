@@ -8,7 +8,7 @@
 #define HANOI_STACK_EMPTY -1
 
 typedef struct {
-  size_t disk;
+  int disk;
   char source;
   char aux;
   char dest;
@@ -23,8 +23,8 @@ HanoiStack hanoi_stack_create(void);
 void hanoi_stack_push(HanoiStack *stack, HanoiStackElement element);
 HanoiStackElement hanoi_stack_pop(HanoiStack *stack);
 void hanoi_stack_display(HanoiStack stack);
-void hanoi_tower_recursive(size_t n_disks, char rod_A, char rod_B, char rod_C);
-HanoiStackElement hanoi_stack_create_element(size_t disk, char source, char aux,
+void hanoi_tower_recursive(int n_disks, char rod_A, char rod_B, char rod_C);
+HanoiStackElement hanoi_stack_create_element(int disk, char source, char aux,
                                              char dest);
-void hanoi_tower_stack(size_t n_disk);
+void hanoi_tower_stack(int n_disk);
 #endif // HANOI_H_
