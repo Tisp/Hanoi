@@ -1,4 +1,5 @@
 #include "./hanoi.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,7 +13,6 @@ void hanoi_tower_recursive(size_t n_disks, char rod_A, char rod_B, char rod_C) {
 }
 
 void hanoi_tower_stack(size_t n_disk) {
-
   HanoiStack stack = hanoi_stack_create();
   hanoi_stack_push(&stack, hanoi_stack_create_element(n_disk, 'A', 'B', 'C'));
 
@@ -25,6 +25,10 @@ void hanoi_tower_stack(size_t n_disk) {
     char dest = element.dest;
 
     n_disk = element.disk;
+
+    if (n_disk == 1) {
+      continue;
+    }
 
     hanoi_stack_push(&stack,
                      hanoi_stack_create_element(n_disk - 1, aux, source, dest));

@@ -1,15 +1,17 @@
 
-#include "hanoi.h"
+#include <getopt.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "hanoi.h"
+
 int main(int argc, char **argv) {
   int opt;
   bool recursive = false;
   bool stack = false;
-  size_t n_disks;
+  size_t n_disks = 0;
 
   if (argc <= 1) {
     printf("Add arguments!\n");
@@ -34,6 +36,11 @@ int main(int argc, char **argv) {
       printf("unknown option : %c\n", optopt);
       exit(-1);
     }
+  }
+  printf("%zu\n", n_disks);
+  if (n_disks <= 0) {
+    printf("-n is mandatory!\n");
+    exit(-1);
   }
 
   if (recursive && stack) {
