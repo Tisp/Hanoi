@@ -7,6 +7,8 @@
 
 #include "hanoi.h"
 
+void print_help(void);
+
 int main(int argc, char **argv) {
   int opt;
   bool recursive = false;
@@ -18,7 +20,7 @@ int main(int argc, char **argv) {
     exit(1);
   }
 
-  while ((opt = getopt(argc, argv, ":n:rs")) != -1) {
+  while ((opt = getopt(argc, argv, ":n:rsh")) != -1) {
     switch (opt) {
     case 'r':
       recursive = true;
@@ -29,11 +31,16 @@ int main(int argc, char **argv) {
     case 'n':
       n_disks = atoi(optarg);
       break;
+    case 'h':
+      print_help();
+      exit(0);
     case ':':
       printf("option %c needs a value\n", optopt);
+      print_help();
       exit(-1);
     case '?':
       printf("unknown option : %c\n", optopt);
+      print_help();
       exit(-1);
     }
   }
@@ -44,6 +51,7 @@ int main(int argc, char **argv) {
 
   if (recursive && stack) {
     printf("Need to choose only one algorithm (Recursive[-r] or Stack[-s])!\n");
+    print_help();
     exit(-1);
   }
 
@@ -54,4 +62,12 @@ int main(int argc, char **argv) {
   }
 
   return 0;
+}
+
+void print_help(void) {
+  printf("\nHanoi Tower solution!\n");
+  printf("\t-r Use recursive algorithm\n");
+  printf("\t-s Use stack algorithm and shows the stack\n");
+  printf("\t-n Number of disks\n");
+  printf("\t-h Show help\n");
 }
